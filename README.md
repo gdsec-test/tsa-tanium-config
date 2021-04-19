@@ -18,8 +18,7 @@ Tanium Server on Windows only:
 ## Console Logos
 Customized console logos to differentiate between Tanium environments.
 ### How to configure
-* Log into the Tanium Console, access Administration > Miscellaneous > Console Configurations and upload a new file under Console Logo.
-* The change can take a few minutes to apply and requires a browser cache reload.
+* Follow the configuration steps in [Tanium Console user guide: Customize the console logo](https://docs.tanium.com/platform_user/platform_user/console_customizations.html#Customize_the_console_logo).
 ### Files
 * Development: console\logos\Alt_Logo-dev.png
 * Production EMEA: console\logos\Alt_Logo-prod-emea.png
@@ -28,7 +27,7 @@ Customized console logos to differentiate between Tanium environments.
 Customized header text to differentiate between Tanium environments.
 ### How to configure
 Do one of the following:
-* Follow the configuration steps in [Tanium Console user guide: Select the Tanium Console header text](https://docs.tanium.com/platform_user/platform_user/console_customizations.html#header_text)
+* Follow the configuration steps in [Tanium Console user guide: Select the Tanium Console header text](https://docs.tanium.com/platform_user/platform_user/console_customizations.html#header_text).
 * Alternatively, access Administration > Global Settings and create/edit the setting named `console_headerText` as follows:
 ** Value Type: `Text`
 ** Type: `Server`
