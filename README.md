@@ -28,8 +28,11 @@ Customized console logos to differentiate between Tanium environments.
 Customized header text to differentiate between Tanium environments.
 ### How to configure
 Do one of the following:
-* Log into the Tanium Console, access Administration > Miscellaneous > Console Configurations and enter a new value for Console Header Text.
-* Log into the Tanium Console, access Administration > Global Settings and enter a new Text value with Server type with the name *console_headerText*.
+* Follow the configuration steps in [Tanium Console user guide: Select the Tanium Console header text](https://docs.tanium.com/platform_user/platform_user/console_customizations.html#header_text)
+* Alternatively, access Administration > Global Settings and create/edit the setting named `console_headerText` as follows:
+** Value Type: `Text`
+** Type: `Server`
+** Value: `Production US` - Enter the desired header text value.
 ### Values
 * Development
 * Production EMEA (Works Council)
@@ -42,7 +45,7 @@ Do one of the following:
 * To apply a specific color value, access *Administration > Global Settings* and create/edit the setting named `console_consoleColor` as follows:
 ** Value Type: `Text`
 ** Type: `Server`
-** Value: `#000000` - Enter the hex value for the desired color
+** Value: `#000000` - Enter the hex value for the desired color.
 ### Values
 * Development: #31F341
 * Production EMEA: #FFFF33
