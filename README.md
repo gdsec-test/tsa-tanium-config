@@ -12,17 +12,17 @@ Tanium Server on Windows only:
 * Copy the icon to *$env:PROGRAMFILES\Tanium\Tanium Server\http\tux-console\assets\images\favicon.ico*.
 * The change can take a few minutes to apply and requires a browser cache reload.
 ### Files
-* Development: console\favicons\favicon-dev.ico
-* Production EMEA: console\favicons\favicon-prod-emea.ico
-* Production US (Tanium default): console\favicons\favicon.ico
+* Development: [favicon-dev.ico](https://github.com/gdcorp-infosec/tsa-tanium-config/blob/579fbdf82c4ef32050656969c67397e25642d933/console/favicons/favicon-dev.ico)
+* Production EMEA: [favicon-prod-emea.ico](https://github.com/gdcorp-infosec/tsa-tanium-config/blob/579fbdf82c4ef32050656969c67397e25642d933/console/favicons/favicon-prod-emea.ico)
+* Production US (Tanium default): [favicon.ico](https://github.com/gdcorp-infosec/tsa-tanium-config/blob/579fbdf82c4ef32050656969c67397e25642d933/console/favicons/favicon.ico)
 ## Console Logos
 Customized console logos to differentiate between Tanium environments.
 ### How to configure
 * Follow the configuration steps in [Tanium Console user guide: Customize the console logo](https://docs.tanium.com/platform_user/platform_user/console_customizations.html#Customize_the_console_logo).
 ### Files
-* Development: console\logos\Alt_Logo-dev.png
-* Production EMEA: console\logos\Alt_Logo-prod-emea.png
-* Production US (Tanium default) console\logos\Alt_Logo.svg
+* Development: [Alt_Logo-dev.png](https://github.com/gdcorp-infosec/tsa-tanium-config/blob/579fbdf82c4ef32050656969c67397e25642d933/console/logos/Alt_Logo-dev.png)
+* Production EMEA: [Alt_Logo-prod-emea.png](https://github.com/gdcorp-infosec/tsa-tanium-config/blob/579fbdf82c4ef32050656969c67397e25642d933/console/logos/Alt_Logo-prod-emea.png)
+* Production US (Tanium default): [Alt_Logo.svg](https://github.com/gdcorp-infosec/tsa-tanium-config/blob/579fbdf82c4ef32050656969c67397e25642d933/console/logos/Alt_Logo.svg)
 ## Console Header Text
 Customized header text to differentiate between Tanium environments.
 ### How to configure
