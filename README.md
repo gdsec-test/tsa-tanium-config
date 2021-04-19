@@ -1,6 +1,10 @@
 # tsa-tanium-config
 Environment configuration and customization for Tanium platform infrastructure.
 
+# Console Customization
+The configurations described below are (or should be) live in each respective Tanium environment.
+
+Up-to-date vendor documentation is available here: (Tanium Console User Guide: Customizing the Tanium Console and Interact)[https://docs.tanium.com/platform_user/platform_user/console_customizations.html]
 ## Console Favicons
 Customized console favicons to differentiate between Tanium environments.
 ### Configure
@@ -36,6 +40,8 @@ Customized console color to differentiate between Tanium environments.
 Do one of the following:
 * Log into the Tanium Console, access Administration > Miscellaneous > Console Configurations and choose a new color under Console Color.
 * Log into the Tanium Console, access Administration > Global Settings and create/edit the setting named *console_consoleColor* with Value Type *Text*, Type *Server*, and the value as a hex color starting with #.
+
+Reference: [https://docs.tanium.com/platform_user/platform_user/console_customizations.html#Customize_the_console_color|Tanium Console User Guide - Customize the Tanium Console color]
 ### Values
 * Development: #31F341
 * Production EMEA: #FFFF33
