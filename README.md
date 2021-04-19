@@ -1,10 +1,10 @@
 # tsa-tanium-config
-Environment configuration and customization for Tanium platform infrastructure.
+Environment configuration and customizations for the Tanium platform.
 
-# Console Customization
+# Tanium Console
 The configurations described below are (or should be) live in each respective Tanium environment.
 
-Up-to-date vendor documentation is available here: [Tanium Console User Guide: Customizing the Tanium Console and Interact](https://docs.tanium.com/platform_user/platform_user/console_customizations.html)
+See: [Tanium Console User Guide: Customizing the Tanium Console and Interact](https://docs.tanium.com/platform_user/platform_user/console_customizations.html) for up-to-date instructions.
 ## Console Favicons
 Customized console favicons to differentiate between Tanium environments.
 ### Configure
