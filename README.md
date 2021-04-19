@@ -38,10 +38,11 @@ Do one of the following:
 Customized console color to differentiate between Tanium environments.
 ### How to configure
 Do one of the following:
-* Log into the Tanium Console, access Administration > Miscellaneous > Console Configurations and choose a new color under Console Color.
-* Log into the Tanium Console, access Administration > Global Settings and create/edit the setting named *console_consoleColor* with Value Type *Text*, Type *Server*, and the value as a hex color starting with #.
-
-Reference: [https://docs.tanium.com/platform_user/platform_user/console_customizations.html#Customize_the_console_color|Tanium Console User Guide - Customize the Tanium Console color]
+* Follow the configuration steps in [Tanium Console User Guide: Customize the console color](https://docs.tanium.com/platform_user/platform_user/console_customizations.html#Customize_the_console_color).
+* To apply a specific color value, access *Administration > Global Settings* and create/edit the setting named `console_consoleColor` as follows:
+** Value Type: `Text`
+** Type: `Server`
+** Value: `#000000` - Enter the hex value for the desired color
 ### Values
 * Development: #31F341
 * Production EMEA: #FFFF33
