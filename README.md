@@ -29,23 +29,23 @@ Customized header text to differentiate between Tanium environments.
 Do one of the following:
 * Follow the configuration steps in [Tanium Console user guide: Select the Tanium Console header text](https://docs.tanium.com/platform_user/platform_user/console_customizations.html#header_text).
 * Alternatively, access Administration > Global Settings and create/edit the setting named `console_headerText` as follows:
-** Value Type: `Text`
-** Type: `Server`
-** Value: `Production US` - Enter the desired header text value.
+* * Value Type: `Text`
+* * Type: `Server`
+* * Value: `Production US` - Enter the desired header text value.
 ### Values
-* Development
-* Production EMEA (Works Council)
-* Production US
+* Development: `Development`
+* Production EMEA: `Production EMEA (Works Council)`
+* Production US: `Production US`
 ## Console Color
 Customized console color to differentiate between Tanium environments.
 ### How to configure
 Do one of the following:
 * Follow the configuration steps in [Tanium Console User Guide: Customize the console color](https://docs.tanium.com/platform_user/platform_user/console_customizations.html#Customize_the_console_color).
 * To apply a specific color value, access *Administration > Global Settings* and create/edit the setting named `console_consoleColor` as follows:
-** Value Type: `Text`
-** Type: `Server`
-** Value: `#000000` - Enter the hex value for the desired color.
+* * Value Type: `Text`
+* * Type: `Server`
+* * Value: `#000000` - Enter the hex value for the desired color.
 ### Values
-* Development: #31F341
-* Production EMEA: #FFFF33
-* Production US (Tanium default): #EB3330
+* Development: `#31F341`
+* Production EMEA: `#FFFF33`
+* Production US (Tanium default): `#EB3330`
