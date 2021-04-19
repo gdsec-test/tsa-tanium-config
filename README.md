@@ -4,7 +4,7 @@ Environment configuration and customization for Tanium platform infrastructure.
 # Console Customization
 The configurations described below are (or should be) live in each respective Tanium environment.
 
-Up-to-date vendor documentation is available here: (Tanium Console User Guide: Customizing the Tanium Console and Interact)[https://docs.tanium.com/platform_user/platform_user/console_customizations.html]
+Up-to-date vendor documentation is available here: [Tanium Console User Guide: Customizing the Tanium Console and Interact](https://docs.tanium.com/platform_user/platform_user/console_customizations.html)
 ## Console Favicons
 Customized console favicons to differentiate between Tanium environments.
 ### Configure
