@@ -1,10 +1,10 @@
-graph LR
-    subgraph TS["Tanium Server (HA)"]
-        subgraph MS_A2["Ashburn, VA, USA"]
+flowchart LR
+    %% Define nodes and subgraphs
+    subgraph TS["Tanium Server"]
+        subgraph TS_A2["Ashburn, VA, USA"]
             TS_A2_1["A2PWTANIUMHUB01"]
             TS_A2_2["A2PWTANIUMHUB02"]
             TS_A2_1 <-->|"TCP/17472"| TS_A2_2
-            TS_A2_2 <-->|"TCP/17472"| TS_A2_1
         end
     end
     subgraph MS["Tanium Module Server"]
@@ -14,18 +14,18 @@ graph LR
     end
     subgraph ZS["Tanium Zone Server"]
         subgraph ZS_A2["Ashburn, VA, USA"]
-            ZS_A2_1["A2PWTANIUMZON01"]
-            ZS_A2_2["A2PWTANIUMZON02"]
+            ZS_A2_1["A2PWTANIUMZON01<br/>Internal & External"]
+            ZS_A2_2["A2PWTANIUMZON02<br/>Internal Only"]
         end
         subgraph ZS_P3["Phoenix, AZ, USA"]
-            ZS_P3_1["P3PWTANIUMZON01"]
-            ZS_P3_2["P3PWTANIUMZON02"]
-        end
-        subgraph ZS_CGN["Cologne, DE"]
-            ZS_CGN_1["CGN-TAN-ZON001<br>(EMEA Systems Only)"]
+            ZS_P3_1["P3PWTANIUMZON01<br/>Internal & External"]
+            ZS_P3_2["P3PWTANIUMZON02<br/>Internal Only"]
         end
         subgraph ZS_SG2["Singapore, SG"]
-            ZS_SG2_1["SG2PWTANIUMZS01"]
+            ZS_SG2_1["SG2PWTANIUMZS01<br/>Internal Only"]
+        end
+        subgraph ZS_CGN["Cologne, DE"]
+            ZS_CGN_1["CGN-TAN-ZON001<br/>Internal & External"]
         end
     end
     subgraph ZH["Tanium Zone Server Hub"]
@@ -37,20 +37,36 @@ graph LR
         subgraph SQL_A2["Ashburn, VA, USA"]
             SQL_A2_3["A2PWTANSOCSQL03"]
             SQL_A2_4["A2PWTANSOCSQL04"]
-            SQL_A2_3 --> SQL_A2_4
-            SQL_A2_4 --> SQL_A2_3
+            SQL_A2_3 <--> SQL_A2_4
         end
     end
-    External["External Clients"]
-    Internal["Internal Clients"]
-    Console["Tanium Console"]
+    
+    %% Define nodes not part of a subgraph
+    TaniumClient["Tanium Client"]
+    TaniumConsole["Tanium Console<br/>https://tanium.int.gdcorp.tools"]
 
-    TS -->|"TCP/17477"| MS
-    TS -->|"TCP/1433,5432"| SQL
-    TS --> ZH
-    TS -->|"TCP/17472"| ZS
-    Console -->|"TCP/443"| TS
-    Internal -->|"TCP/17472<br>Unused"| TS
-    MS -->|"TCP/443"| TS
-    ZH --> ZS_CGN
-    External -->|"TCP/17472,17500"| ZS
+    %% Define relationships
+    TS_A2 ==>|"TCP/17477"| MS_P3
+    MS_P3 ==>|"TCP/443"| TS_A2
+    TS_A2 ==>|"TCP/1433,5432"| SQL_A2
+    TS_A2 --> ZH_A2
+    TS_A2 -->|"TCP/17472"| ZS_A2
+    TS_A2 -->|"TCP/17472"| ZS_P3
+    TS_A2 -->|"TCP/17472"| ZS_SG2
+    ZH_A2 --> ZS_CGN
+    TaniumClient -.->|"TCP/17472<br/>Unused"| TS_A2
+    TaniumClient -.->|"TCP/17475<br/>Unused"| MS_P3
+    TaniumClient -.->|"TCP/17472,17500<br/>EMEA Computers Only"| ZS_CGN
+    TaniumClient -.->|"TCP/17472,17500"| ZS_A2
+    TaniumClient -.->|"TCP/17472,17500"| ZS_P3
+    TaniumClient -.->|"TCP/17472,17500"| ZS_SG2
+    TaniumConsole -->|"TCP/443"| TS_A2
+    
+    %% Add hyperlinks
+    click TaniumConsole "https://tanium.int.gdcorp.tools" "Tanium Console (VPN Required)"
+
+    %% Define styles
+    classDef className fill:#f9f,stroke:#333,stroke-width:4px;
+    
+    %% Assign styles
+    %%class TaniumClient,TaniumClient_EMEA,Internal,Console className;
