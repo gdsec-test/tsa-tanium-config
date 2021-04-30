@@ -8,11 +8,11 @@ The comamnds below render [tanium-architecture-prod-us.mmd](/docs/diagrams/src/t
 
 ### PNG
 ```
-docker run -it -v ~/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-prod-us.mmd -o /data/res/tanium-architecture-prod-us.png
+docker run -it -v ~/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-prod-us.mmd -o /data/res/tanium-architecture-prod-us.png -t default -b white
 ```
 
 ### SVG
 ```
-docker run -it -v ~/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-prod-us.mmd -o /data/res/tanium-architecture-prod-us.svg -t default -b white -w 1280 -c /data/src/mermaid-config.json
+docker run -it -v ~/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-prod-us.mmd -o /data/res/tanium-architecture-prod-us.svg -t default -b white -c /data/src/mermaid-config.json
 ```
 The use of [mermaid-config.json](/docs/diagrams/src/mermaid-config.json) is required for SVG due to <a href="https://github.com/mermaid-js/mermaid/issues/1766">Issue #1766 · mermaid-js/mermaid (github.com)</a>.
