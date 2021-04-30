@@ -1,0 +1,6 @@
+[submodule "submodules/compile-mermaid-markdown-action"]
+	path = submodules/compile-mermaid-markdown-action
+	url = https://github.com/neenjaw/compile-mermaid-markdown-action
+[submodule "submodules/github-push-action"]
+	path = submodules/github-push-action
+	url = https://github.com/ad-m/github-push-action
