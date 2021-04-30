@@ -1,6 +1,13 @@
 # tsa-tanium-config
 Environment configuration and customizations for the Tanium platform.
 
+# Tanium Architecture
+## Production US
+![Image Alt](/docs/res/tanium-architecture-prod-us.svg)
+## Production EMEA
+TBD
+
+## Development
 # Tanium Console
 The configurations described below are (or should be) live in their respective Tanium environments.
 
