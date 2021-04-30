@@ -3,7 +3,8 @@ Environment configuration and customizations for the Tanium platform.
 
 # Tanium Architecture
 ## Production US
-![Image Alt](/docs/res/tanium-architecture-prod-us.svg)
+![GoDaddy Tanium Architecture (Production US)](/docs/res/tanium-architecture-prod-us.svg)
+
 ## Production EMEA
 TBD
 
