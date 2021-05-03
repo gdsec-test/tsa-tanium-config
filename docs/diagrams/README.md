@@ -32,7 +32,7 @@ docker run --rm -it -v /mnt/c/Repos/gdcorp-infosec/tsa-tanium-config/docs/diagra
 ```
 # Tanium Development
 # PNG
-docker run --rm -it -v /mnt/c/Repos/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-dev.mmd -o /data/res/tanium-architecture-dev-us.png -t default -b white -w 1920
+docker run --rm -it -v /mnt/c/Repos/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-dev.mmd -o /data/res/tanium-architecture-dev.png -t default -b white -w 1920
 # SVG
 docker run --rm -it -v /mnt/c/Repos/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-dev.mmd -o /data/res/tanium-architecture-dev.svg -t default -b white -w 1920 -c /data/src/mermaid-config.json
 ```
