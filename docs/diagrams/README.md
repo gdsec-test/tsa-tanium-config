@@ -4,7 +4,7 @@ Mermaid is a programmatic visualization engine that renders diagrams and flowcha
 This document describes the use of [mermaid-cli](https://github.com/mermaid-js/mermaid-cli) to render mermaid diagrams.
 
 ## mermaid-cli
-The comamnds below render their respective diagrams in [../docs/diagrams/src/](/docs/diagrams/src/) in PNG and SVG using the mermaid-cli Docker image.
+The comamnds below render their respective diagrams in [/docs/diagrams/src/](/docs/diagrams/src/) in PNG and SVG using the mermaid-cli Docker image.
 
 Replace ```/mnt/c/Repos/gdcorp-infosec/tsa-tanium-config``` with the path to your local copy of the repo.
 
