@@ -49,7 +49,7 @@ flowchart LR
     %% Define relationships
     TS_A2 -->|"TCP/17477"| MS_P3
     MS_P3 -->|"TCP/443"| TS_A2
-    TS_A2 -->|"TCP/1433"| SQL_A2_3
+    TS_A2 -->|"TCP/1433<br/>to<br/>A2PWTANSOCSQL03"| SQL_A2_3
     TS_A2 --> ZH_A2
     TS_A2 -->|"TCP/17472"| ZS_A2
     TS_A2 -->|"TCP/17472"| ZS_P3
