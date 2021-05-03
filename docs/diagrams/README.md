@@ -9,12 +9,26 @@ The comamnds below render [tanium-architecture-prod-us.mmd](/docs/diagrams/src/t
 Replace ```/mnt/c/Repos/gdcorp-infosec/tsa-tanium-config``` with the path to your copy of the repo.
 ### PNG
 ```
+# Production US
 docker run --rm -it -v /mnt/c/Repos/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-prod-us.mmd -o /data/res/tanium-architecture-prod-us.png -t default -b white -w 1920
+
+# Production EMEA
+docker run --rm -it -v /mnt/c/Repos/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-prod-emea.mmd -o /data/res/tanium-architecture-prod-emea.png -t default -b white -w 1920
+
+# Development
+docker run --rm -it -v /mnt/c/Repos/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-dev.mmd -o /data/res/tanium-architecture-dev-us.png -t default -b white -w 1920
 ```
 
 ### SVG
 ```
+# Production US
 docker run --rm -it -v /mnt/c/Repos/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-prod-us.mmd -o /data/res/tanium-architecture-prod-us.svg -t default -b white -w 1920 -c /data/src/mermaid-config.json
+
+# Production EMEA
+docker run --rm -it -v /mnt/c/Repos/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-prod-emea.mmd -o /data/res/tanium-architecture-prod-emea.svg -t default -b white -w 1920 -c /data/src/mermaid-config.json
+
+# Development
+docker run --rm -it -v /mnt/c/Repos/gdcorp-infosec/tsa-tanium-config/docs/diagrams/:/data minlag/mermaid-cli -i /data/src/tanium-architecture-dev.mmd -o /data/res/tanium-architecture-dev.svg -t default -b white -w 1920 -c /data/src/mermaid-config.json
 ```
 The use of [mermaid-config.json](/docs/diagrams/src/mermaid-config.json) is required for SVG due to <a href="https://github.com/mermaid-js/mermaid/issues/1766">Issue #1766 · mermaid-js/mermaid (github.com)</a>.
 
