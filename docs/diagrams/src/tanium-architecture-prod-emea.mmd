@@ -14,7 +14,7 @@ flowchart LR
     RDPClient["RDP Client"]
 
     %% Define relationships
-    TaniumClient -.->|"TCP/17472,17475"| TS_CGN
+    TaniumClient -.->|"TCP/17472,17475<br/>wc.tanium.gde.systems"| TS_CGN
     TaniumConsole -->|"TCP/443"| TS_CGN
     RDPClient -->|"TCP/UDP/3389"| RDPBastion -->|"TCP/UDP/3389"| TS_CGN
 
