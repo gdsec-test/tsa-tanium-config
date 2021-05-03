@@ -3,13 +3,13 @@ Environment configuration and customizations for the Tanium platform.
 
 # Tanium Architecture
 ## Production US
-![GoDaddy Tanium Architecture (Production US)](/docs/diagrams/res/tanium-architecture-prod-us.svg)
+![GoDaddy Tanium Architecture (Production US)](/docs/diagrams/res/tanium-architecture-prod-us.png)
 
 ## Production EMEA (Works Council)
-![GoDaddy Tanium Architecture (Production EMEA WC)](/docs/diagrams/res/tanium-architecture-prod-emea.svg)
+![GoDaddy Tanium Architecture (Production EMEA WC)](/docs/diagrams/res/tanium-architecture-prod-emea.png)
 
 ## Development
-![GoDaddy Tanium Architecture (Development)](/docs/diagrams/res/tanium-architecture-dev.svg)
+![GoDaddy Tanium Architecture (Development)](/docs/diagrams/res/tanium-architecture-dev.png)
 
 # Tanium Console
 The configurations described below are (or should be) live in their respective Tanium environments.
