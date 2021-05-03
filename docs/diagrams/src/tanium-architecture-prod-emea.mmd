@@ -1,0 +1,27 @@
+flowchart LR
+    %% Define nodes and subgraphs
+    subgraph TS["Tanium Server All-In-One"]
+        subgraph TS_CGN["Cologne, DE"]
+            TS_CGN_1["cgnpwtan01.jomax.paholdings.com"]
+        end
+    end
+    
+    %% Define nodes not part of a subgraph
+    TaniumClient["Tanium Client"]
+    TaniumConsole["Tanium Console<br/>https://wc-tanium.int.gdcorp.tools"]
+    RDPBastion["RDP Bastion Host<br/>cgnpwbastion01.gde.systems"]
+    RDPClient["RDP Client"]
+
+    %% Define relationships
+    TaniumClient -.->|"TCP/17472,17475"| TS_CGN
+    TaniumConsole -->|"TCP/443"| TS_CGN
+    RDPClient -->|"TCP/UDP/3389"| RDPBastion -->|"TCP/UDP/3389"| TS_CGN
+
+    %% Add hyperlinks
+    click TaniumConsole "https://wc-tanium.int.gdcorp.tools" "Tanium Console (VPN Required)"
+
+    %% Define styles
+    classDef className fill:#f9f,stroke:#333,stroke-width:4px;
+    
+    %% Assign styles
+    %%class TaniumClient,Console className;
