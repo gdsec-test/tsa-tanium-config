@@ -42,6 +42,7 @@ flowchart LR
     end
     
     %% Define nodes not part of a subgraph
+    %%Title("Tanium Production"):::StyleGoDaddyProd
     TaniumClient["Tanium Client"]
     TaniumConsole["Tanium Console<br/>https://tanium.int.gdcorp.tools"]
 
@@ -66,7 +67,9 @@ flowchart LR
     click TaniumConsole "https://tanium.int.gdcorp.tools" "Tanium Console (VPN Required)"
 
     %% Define styles
-    classDef className fill:#f9f,stroke:#333,stroke-width:4px;
-    
+    classDef StyleGoDaddyProd fill:#E22726,color:#000000,stroke:#FFFFFF,stroke-width:1px;
+    classDef StyleGoDaddyProdEMEA fill:#FED317,color:#2F1C4C,stroke:#FADCD9,stroke-width:1px;
+    classDef StyleGoDaddyDev fill:#00782E,color:#D8EFEF,stroke:#FFEEA9,stroke-width:1px;
+
     %% Assign styles
-    %%class TaniumClient,TaniumClient_EMEA,Internal,Console className;
+    %%class Title StyleGoDaddyProd;
