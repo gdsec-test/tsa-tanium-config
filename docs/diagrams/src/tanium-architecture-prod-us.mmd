@@ -2,35 +2,35 @@ flowchart LR
     %% Define nodes and subgraphs
     subgraph TS["Tanium Server"]
         subgraph TS_A2["Ashburn, VA, USA"]
-            TS_A2_1["A2PWTANIUMHUB01"]
-            TS_A2_2["A2PWTANIUMHUB02"]
+            TS_A2_1["a2pwtaniumhub01.dc1.corp.gd"]
+            TS_A2_2["a2pwtaniumhub02.dc1.corp.gd"]
             TS_A2_1 <-->|"TCP/17472"| TS_A2_2
         end
     end
     subgraph MS["Tanium Module Server"]
         subgraph MS_P3["Phoenix, AZ, USA"]
-            MS_P3_1["P3PWTANIUMMOD01"]
+            MS_P3_1["p3pwtaniummod01"]
         end
     end
     subgraph ZS["Tanium Zone Server"]
         subgraph ZS_A2["Ashburn, VA, USA"]
-            ZS_A2_1["A2PWTANIUMZON01<br/>Internal & External"]
-            ZS_A2_2["A2PWTANIUMZON02<br/>Internal Only"]
+            ZS_A2_1["a2pwtaniumzon01.dc1.corp.gd<br/>Internal & External"]
+            ZS_A2_2["a2pwtaniumzon02.cloud.iad2.gdg<br/>Internal Only"]
         end
         subgraph ZS_P3["Phoenix, AZ, USA"]
-            ZS_P3_1["P3PWTANIUMZON01<br/>Internal & External"]
-            ZS_P3_2["P3PWTANIUMZON02<br/>Internal Only"]
+            ZS_P3_1["p3pwtaniumzon01.dc1.corp.gd<br/>Internal & External"]
+            ZS_P3_2["p3pwtaniumzon02.cloud.phx3.gdg<br/>Internal Only"]
         end
         subgraph ZS_SG2["Singapore, SG"]
-            ZS_SG2_1["SG2PWTANIUMZS01<br/>Internal Only"]
+            ZS_SG2_1["sg2pwtaniumzs01.cloud.sin2.gdg<br/>Internal Only"]
         end
         subgraph ZS_CGN["Cologne, DE"]
-            ZS_CGN_1["CGN-TAN-ZON001<br/>Internal & External"]
+            ZS_CGN_1["cgn-tan-zon001.jomax.paholdings.com<br/>Internal & External"]
         end
     end
     subgraph ZH["Tanium Zone Server Hub"]
         subgraph ZH_A2["Ashburn, VA, USA"]
-            ZH_A2_1["A2PWTANIUMHUB03"]
+            ZH_A2_1["p3pwtaniumhub03.cloud.phx3.gdg"]
         end
     end
     subgraph SQL["SQL Server"]
@@ -57,10 +57,12 @@ flowchart LR
     ZH_A2 --> ZS_CGN
     TaniumClient -.->|"TCP/17472<br/>Unused"| TS_A2
     TaniumClient -.->|"TCP/17475<br/>Unused"| MS_P3
-    TaniumClient -.->|"TCP/17472,17500<br/>EMEA Computers Only"| ZS_CGN
-    TaniumClient -.->|"TCP/17472,17500"| ZS_A2
-    TaniumClient -.->|"TCP/17472,17500"| ZS_P3
-    TaniumClient -.->|"TCP/17472,17500"| ZS_SG2
+    TaniumClient -.->|"TCP/17472,17500<br/>Direct Connect Enabled<br/>EMEA Computers Only"| ZS_CGN
+    TaniumClient -.->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_A2_1
+    TaniumClient -.->|"TCP/17472"| ZS_A2_2
+    TaniumClient -.->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_P3_1
+    TaniumClient -.->|"TCP/17472"| ZS_P3_2
+    TaniumClient -.->|"TCP/17472"| ZS_SG2
     TaniumConsole -->|"TCP/443"| TS_A2
     
     %% Add hyperlinks
