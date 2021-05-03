@@ -1,0 +1,30 @@
+flowchart LR
+    %% Define nodes and subgraphs
+    subgraph TS["Tanium Server All-In-One"]
+        subgraph TS_P3["Phoenix, AZ, USA"]
+            TS_P3_1["taniumwin-dev.cloud.phx3.gdg"]
+        end
+    end
+    
+    %% Define nodes not part of a subgraph
+    Title("Tanium Development Environment")
+    TaniumClient["Tanium Client"]
+    TaniumConsole["Tanium Console<br/>https://tanium-dev.int.gdcorp.tools"]
+    RDPClient["RDP Client"]
+
+    %% Define relationships
+    TaniumClient -.->|"TCP/17472<br/>TCP/17475"| TS_P3
+    TaniumConsole -->|"TCP/443"| TS_P3
+    RDPClient -->|"TCP/UDP/3389"| TS_P3
+
+    %% Add hyperlinks
+    click TaniumConsole "https://tanium-dev.int.gdcorp.tools" "Tanium Console (VPN Required)"
+
+    %% Define styles
+    classDef StyleGoDaddyProd fill:#E22726,color:#000000,stroke:#FFFFFF,stroke-width:1px;
+    classDef StyleGoDaddyProdEMEA fill:#FED317,color:#2F1C4C,stroke:#FADCD9,stroke-width:1px;
+    classDef StyleGoDaddyDev fill:#00782E,color:#D8EFEF,stroke:#FFEEA9,stroke-width:1px;
+    
+    
+    %% Assign styles
+    class Title StyleGoDaddyDev;
