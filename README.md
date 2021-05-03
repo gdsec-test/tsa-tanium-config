@@ -5,10 +5,12 @@ Environment configuration and customizations for the Tanium platform.
 ## Production US
 ![GoDaddy Tanium Architecture (Production US)](/docs/diagrams/res/tanium-architecture-prod-us.svg)
 
-## Production EMEA
-TBD
+## Production EMEA (Works Council)
+![GoDaddy Tanium Architecture (Production EMEA WC)](/docs/diagrams/res/tanium-architecture-prod-emea.svg)
 
 ## Development
+![GoDaddy Tanium Architecture (Development)](/docs/diagrams/res/tanium-architecture-dev.svg)
+
 # Tanium Console
 The configurations described below are (or should be) live in their respective Tanium environments.
 
