@@ -8,8 +8,8 @@ flowchart LR
         end
     end
     subgraph MS["Tanium Module Server"]
-        subgraph MS_P3["Ashburn, VA, USA"]
-            MS_P3_1["a2pwtaniummod01.dc1.corp.gd"]
+        subgraph MS_A2["Ashburn, VA, USA"]
+            MS_A2_1["a2pwtaniummod01.dc1.corp.gd"]
         end
     end
     subgraph ZS["Tanium Zone Server"]
@@ -25,12 +25,12 @@ flowchart LR
             ZS_SG2_1["sg2pwtaniumzs01.cloud.sin2.gdg<br/>Internal Only"]
         end
         subgraph ZS_CGN["Cologne, DE"]
-            ZS_CGN_1["cgn-tan-zon001.jomax.paholdings.com<br/>Internal & External"]
+            ZS_CGN_1["cgnpwtaniumzs01.tanium.gde.systems<br/>Internal Only"]
         end
     end
     subgraph ZH["Tanium Zone Server Hub"]
-        subgraph ZH_A2["Ashburn, VA, USA"]
-            ZH_A2_1["p3pwtaniumhub03.cloud.phx3.gdg"]
+        subgraph ZH_P3["Phoenix, AZ, USA"]
+            ZH_P3_1["p3pwtaniumhub03.cloud.phx3.gdg"]
         end
     end
     subgraph SQL["SQL Server"]
@@ -43,28 +43,33 @@ flowchart LR
     
     %% Define nodes not part of a subgraph
     %%Title("Tanium Production"):::StyleGoDaddyProd
-    TaniumClient["Tanium Client"]
+    %%TaniumClientInt["Tanium Client"]
+    TaniumClientExt["Tanium Client"]
     TaniumConsole["Tanium Console<br/>https://tanium.int.gdcorp.tools"]
+    %%RDPBastion["RDP Bastion Host<br/>cgnpwbastion01.gde.systems"]
+    %%RDPClient["RDP Client"]
 
     %% Define relationships
-    TS_A2 -->|"TCP/17477"| MS_P3
-    MS_P3 -->|"TCP/443"| TS_A2
-    TS_A2 -->|"TCP/1433<br/>to<br/>A2PWTANSOCSQL03"| SQL_A2_3
-    TS_A2 --> ZH_A2
+    TS_A2 -->|"TCP/17477"| MS_A2
+    MS_A2 -->|"TCP/443"| TS_A2
+    MS_A2 -->|"TCP/17487-17488"| ZS_A2_1
+    MS_A2 -->|"TCP/17487-17488"| ZS_P3_1
+    TS_A2 -->|"TCP/1433"| SQL_A2_3
+    TS_A2 --> ZH_P3 --> ZS_CGN_1
     TS_A2 -->|"TCP/17472"| ZS_A2
     TS_A2 -->|"TCP/17472"| ZS_P3
     TS_A2 -->|"TCP/17472"| ZS_SG2
-    ZH_A2 --> ZS_CGN
-    TaniumClient -.->|"TCP/17472<br/>Unused"| TS_A2
-    TaniumClient -.->|"TCP/17475<br/>Unused"| MS_P3
-    TaniumClient -.->|"TCP/17472,17500<br/>Direct Connect Enabled<br/>EMEA Computers Only"| ZS_CGN
-    TaniumClient -.->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_A2_1
-    TaniumClient -.->|"TCP/17472"| ZS_A2_2
-    TaniumClient -.->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_P3_1
-    TaniumClient -.->|"TCP/17472"| ZS_P3_2
-    TaniumClient -.->|"TCP/17472"| ZS_SG2
+    TaniumClientExt .->|"TCP/17472<br/>Unused"| TS_A2
+    TaniumClientExt .->|"TCP/17475<br/>Unused"| MS_A2
+    TaniumClientExt .->|"TCP/17472<br/>EMEA Computers Only"| ZS_CGN_1
+    TaniumClientExt .->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_A2_1
+    TaniumClientExt .->|"TCP/17472"| ZS_A2_2
+    TaniumClientExt .->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_P3_1
+    TaniumClientExt .->|"TCP/17472"| ZS_P3_2
+    TaniumClientExt .->|"TCP/17472"| ZS_SG2
     TaniumConsole -->|"TCP/443"| TS_A2
-    
+    %%RDPClient -->|"TCP/UDP/3389"| RDPBastion -->|"TCP/UDP/3389"| ZS_CGN_1
+
     %% Add hyperlinks
     click TaniumConsole "https://tanium.int.gdcorp.tools" "Tanium Console (VPN Required)"
 
