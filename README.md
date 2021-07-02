@@ -1,5 +1,5 @@
 # tsa-tanium-config
-Environment configuration and customizations for the Tanium platform.
+Environment configuration and customizations for the Tanium platform. Excludes custom content.
 
 # Tanium Architecture
 ## Production US
