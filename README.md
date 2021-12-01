@@ -3,12 +3,15 @@ Environment configuration and customizations for the Tanium platform. Excludes c
 
 # Tanium Architecture
 ## Production US
+Tanium Console: https://tanium.int.gdcorp.tools (VPN required)
 ![GoDaddy Tanium Architecture (Production US)](/docs/diagrams/res/tanium-architecture-prod-us.png)
 
 ## Production EMEA (Works Council)
+Tanium Console: https://wc-tanium.int.gdcorp.tools (VPN required)
 ![GoDaddy Tanium Architecture (Production EMEA WC)](/docs/diagrams/res/tanium-architecture-prod-emea.png)
 
 ## Development
+Tanium Console: https://tanium-dev.int.gdcorp.tools (VPN required)
 ![GoDaddy Tanium Architecture (Development)](/docs/diagrams/res/tanium-architecture-dev.png)
 
 # Tanium Console
