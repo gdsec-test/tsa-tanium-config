@@ -5,22 +5,22 @@ flowchart LR
             subgraph TS_CGN["CGN Tanium Server (WC)"]
                 %% Failover Cluster
                 subgraph CGN_HV1["CGN TS1 Tanium Server HA Active (Private IP)"]
-                    TS_CGN_1["cgnpatswc01.cloud.cgn.gdg"]
+                    TS_CGN_1["cgnpatantswc01.cloud.cgn.gdg"]
                     class TS_CGN_1 yellow
                 end
                 subgraph CGN_HV3["CGN TS2 Tanium Server HA Active (Private IP)"]
-                    TS_CGN_2["cgnpatswc02.cloud.cgn.gdg"]
+                    TS_CGN_2["cgnpatantswc02.cloud.cgn.gdg"]
                     class TS_CGN_2 yellow
                 end
                 TS_CGN_1 <-->|"TCP/17472"| TS_CGN_2
             end
             subgraph MS_CGN["CGN Tanium Module Server (WC)"]
                 subgraph CGN_HV2["CGN MS1 Module Server HA Active (Private IP)"]
-                    MS_CGN_1["cgnpamswc01.cloud.cgn.gdg"]
+                    MS_CGN_1["cgnpatanmswc01.cloud.cgn.gdg"]
                     class MS_CGN_1 yellow
                 end
                 subgraph CGN_HV4["CGN MS2 Module Server HA Passive (Private IP)"]
-                    MS_CGN_2["cgnpamswc02.cloud.cgn.gdg"]
+                    MS_CGN_2["cgnpatanmswc02.cloud.cgn.gdg"]
                     class MS_CGN_2 yellow
                 end
                 MS_CGN_1 -->|"IPsec ESP"| MS_CGN_2
@@ -28,10 +28,10 @@ flowchart LR
             subgraph ZS_CGN["CGN Tanium Zone Server (WC)"]
                 %% Connects to Active Cluster
                 subgraph CGN_HV5["CGN ZS1 Tanium Zone Server (Public IP)"]
-                    ZS_CGN_1["cgnplzswc01.cloud.cgn.gdg<br/>Internal & External"]
+                    ZS_CGN_1["cgnpltanzswc01.cloud.cgn.gdg<br/>Internal & External"]
                 end
                 subgraph CGN_HV6["CGN ZS2 Tanium Zone Server (Public IP)"]
-                    ZS_CGN_2["cgnplzswc02.cloud.cgn.gdg<br/>Internal & External"]
+                    ZS_CGN_2["cgnpltanzswc02.cloud.cgn.gdg<br/>Internal & External"]
                 end
             end
         end
@@ -39,22 +39,22 @@ flowchart LR
             subgraph TS_SXB1["SXB1 Tanium Server (WC)"]
                 %% Active Cluster
                 subgraph SXB1_HV1["SXB1 TS1 Tanium Server HA Active (Private IP)"]
-                    TS_SXB1_1["sxb1patswc01.cloud.sxb1.gdg"]
+                    TS_SXB1_1["sxb1patantswc01.cloud.sxb1.gdg"]
                     class TS_SXB1_1 white
                 end
                 subgraph SXB1_HV3["SXB1 TS2 Tanium Server HA Active (Private IP)"]
-                    TS_SXB1_2["sxb1patswc02.cloud.sxb1.gdg"]
+                    TS_SXB1_2["sxb1patantswc02.cloud.sxb1.gdg"]
                     class TS_SXB1_2 white
                 end
                 TS_SXB1_1 <-->|"TCP/17472"| TS_SXB1_2
             end
             subgraph MS_SXB1["SXB1 Tanium Module Server (WC)"]
                 subgraph SXB1_HV2["SXB1 MS1 Module Server HA Active (Private IP)"]
-                    MS_SXB1_1["sxb1pamswc01.cloud.sxb1.gdg"]
+                    MS_SXB1_1["sxb1patanmswc01.cloud.sxb1.gdg"]
                     class MS_SXB1_1 white
                 end
                 subgraph SXB1_HV4["SXB1 MS2 Module Server HA Passive (Private IP)"]
-                    MS_SXB1_2["sxb1pamswc02.cloud.sxb1.gdg"]
+                    MS_SXB1_2["sxb1patanmswc02.cloud.sxb1.gdg"]
                     class MS_SXB1_2 white
                 end
                 MS_SXB1_1 -->|"IPsec ESP"| MS_SXB1_2
@@ -62,10 +62,10 @@ flowchart LR
             subgraph ZS_SXB1["SXB1 Tanium Zone Server (WC)"]
                 %% Connects to Active Cluster
                 subgraph SXB1_HV5["SXB1 ZS1 Tanium Zone Server (Public IP)"]
-                    ZS_SXB1_1["sxb1plzswc01.cloud.sxb1.gdg<br/>Internal & External"]
+                    ZS_SXB1_1["sxb1pltanzswc01.cloud.sxb1.gdg<br/>Internal & External"]
                 end
                 subgraph SXB1_HV6["SXB1 ZS2 Tanium Zone Server (Public IP)"]
-                    ZS_SXB1_2["sxb1plzswc02.cloud.sxb1.gdg<br/>Internal & External"]
+                    ZS_SXB1_2["sxb1pltanzswc02.cloud.sxb1.gdg<br/>Internal & External"]
                 end
             end
         end

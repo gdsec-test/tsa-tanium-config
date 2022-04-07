@@ -5,11 +5,11 @@ flowchart LR
             subgraph TS_P3["P3 Tanium Server"]
                 %% Failover Cluster
                 subgraph P3_HV1["P3 TS1 Tanium Server HA Active (Private IP)"]
-                    TS_P3_1["p3dats01.cloud.phx3.gdg"]
+                    TS_P3_1["p3datants01.cloud.phx3.gdg"]
                     class TS_P3_1 yellow
                 end
                 subgraph P3_HV3["P3 TS2 Tanium Server HA Active (Private IP)"]
-                    TS_P3_2["p3dats02.cloud.phx3.gdg"]
+                    TS_P3_2["p3datants02.cloud.phx3.gdg"]
                     class TS_P3_2 yellow
                 end
                 TS_P3_1 <-->|"TCP/17472"| TS_P3_2
@@ -17,11 +17,11 @@ flowchart LR
             subgraph MS_P3["P3 Tanium Module Server"]
                 %% Failover Cluster
                 subgraph P3_HV2["P3 MS1 Module Server HA Active (Private IP)"]
-                    MS_P3_1["p3dams01.cloud.phx3.gdg"]
+                    MS_P3_1["p3datanms01.cloud.phx3.gdg"]
                     class MS_P3_1 yellow
                 end
                 subgraph P3_HV4["P3 MS2 Module Server HA Passive (Private IP)"]
-                    MS_P3_2["p3dams02.cloud.phx3.gdg"]
+                    MS_P3_2["p3datanms02.cloud.phx3.gdg"]
                     class MS_P3_2 yellow
                 end
                 MS_P3_1 -->|"IPsec ESP"| MS_P3_2
@@ -29,11 +29,11 @@ flowchart LR
             subgraph ZS_P3["P3 Tanium Zone Server"]
                 %% Connects to Active Cluster
                 subgraph P3_HV5["P3 ZS1 Tanium Zone Server (Public IP)"]
-                    ZS_P3_1["p3dlzs01.cloud.phx3.gdg<br/>Internal & External"]
+                    ZS_P3_1["p3dltanzs01.cloud.phx3.gdg<br/>Internal & External"]
                     class ZS_P3_1 white
                 end
                 subgraph P3_HV6["P3 ZS2 Tanium Zone Server (Public IP)"]
-                    ZS_P3_2["p3dlzs02.cloud.phx3.gdg<br/>Internal & External"]
+                    ZS_P3_2["p3dltanzs02.cloud.phx3.gdg<br/>Internal & External"]
                     class ZS_P3_2 white
                 end
             end
@@ -42,22 +42,22 @@ flowchart LR
             subgraph TS_A2["A2 Tanium Server"]
                 %% Active Cluster
                 subgraph A2_HV1["A2 TS1 Tanium Server HA Active (Private IP)"]
-                    TS_A2_1["a2dats01.cloud.iad2.gdg"]
+                    TS_A2_1["a2datants01.cloud.iad2.gdg"]
                     class TS_A2_1 white
                 end
                 subgraph A2_HV3["A2 TS2 Tanium Server HA Active (Private IP)"]
-                    TS_A2_2["a2dats02.cloud.iad2.gdg"]
+                    TS_A2_2["a2datants02.cloud.iad2.gdg"]
                     class TS_A2_2 white
                 end
                 TS_A2_1 <-->|"TCP/17472"| TS_A2_2
             end
             subgraph MS_A2["A2 Tanium Module Server"]
                 subgraph A2_HV2["A2 MS1 Module Server HA Active (Private IP)"]
-                    MS_A2_1["a2dams01.cloud.iad2.gdg"]
+                    MS_A2_1["a2datanms01.cloud.iad2.gdg"]
                     class MS_A2_1 white
                 end
                 subgraph A2_HV4["A2 MS2 Module Server HA Passive (Private IP)"]
-                    MS_A2_2["a2dams02.cloud.iad2.gdg"]
+                    MS_A2_2["a2datanms02.cloud.iad2.gdg"]
                     class MS_A2_2 white
                 end
                 MS_A2_1 -->|"IPsec ESP"| MS_A2_2
@@ -65,11 +65,11 @@ flowchart LR
             subgraph ZS_A2["A2 Tanium Zone Server"]
                 %% Connects to Active Cluster
                 subgraph A2_HV5["A2 ZS1 Tanium Zone Server (Public IP)"]
-                    ZS_A2_1["a2dlzs01.cloud.iad2.gdg<br/>Internal & External"]
+                    ZS_A2_1["a2dltanzs01.cloud.iad2.gdg<br/>Internal & External"]
                     class ZS_A2_1 white
                 end
                 subgraph A2_HV6["P3 ZS2 Tanium Zone Server (Public IP)"]
-                    ZS_A2_2["a2dlzs02.cloud.iad2.gdg<br/>Internal & External"]
+                    ZS_A2_2["a2dltanzs02.cloud.iad2.gdg<br/>Internal & External"]
                     class ZS_A2_2 white
                 end
             end
@@ -78,10 +78,10 @@ flowchart LR
             subgraph ZS_SXB1["SXB1 Tanium Zone Server"]
                 %% Connects to Active Cluster
                 subgraph SXB1_HV1["SXB1 Dev ZS1 Tanium Zone Server (Public IP)"]
-                    ZS_SXB1_1["sxb1dlzs01.cloud.sxb1.gdg<br/>Internal & External"]
+                    ZS_SXB1_1["sxb1dltanzs01.cloud.sxb1.gdg<br/>Internal & External"]
                 end
                 subgraph SXB1_HV2["SXB1 Dev ZS2 Tanium Zone Server (Public IP)"]
-                    ZS_SXB1_2["sxb1dlzs02.cloud.sxb1.gdg<br/>Internal & External"]
+                    ZS_SXB1_2["sxb1dltanzs02.cloud.sxb1.gdg<br/>Internal & External"]
                 end
             end
         end
@@ -89,10 +89,10 @@ flowchart LR
             subgraph ZS_CGN["CGN Tanium Zone Server"]
                 %% Connects to Active Cluster
                 subgraph CGN_HV1["CGN Dev ZS1 Tanium Zone Server (Public IP)"]
-                    ZS_CGN_1["cgndlzs01.cloud.sxb1.gdg<br/>Internal & External"]
+                    ZS_CGN_1["cgndltanzs01.cloud.sxb1.gdg<br/>Internal & External"]
                 end
                 subgraph CGN_HV2["CGN Dev ZS2 Tanium Zone Server (Public IP)"]
-                    ZS_CGN_2["cgndlzs02.cloud.sxb1.gdg<br/>Internal & External"]
+                    ZS_CGN_2["cgndltanzs02.cloud.sxb1.gdg<br/>Internal & External"]
                 end
             end
         end
