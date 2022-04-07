@@ -1,0 +1,129 @@
+flowchart LR
+    %% Define nodes and subgraphs
+    subgraph TanOS_US_Prod["TanOS US Production"]
+        subgraph P3["PHX3 Phoenix, AZ, USA"]
+            subgraph TS_P3["P3 Tanium Server"]
+                %% Failover Cluster
+                subgraph P3_HV1["P3 TS1 Tanium Server HA Active (Private IP)"]
+                    TS_P3_1["p3pats01.cloud.phx3.gdg"]
+                    class TS_P3_1 yellow
+                end
+                subgraph P3_HV3["P3 TS2 Tanium Server HA Active (Private IP)"]
+                    TS_P3_2["p3pats02.cloud.phx3.gdg"]
+                    class TS_P3_2 yellow
+                end
+                TS_P3_1 <-->|"TCP/17472"| TS_P3_2
+            end
+            subgraph MS_P3["P3 Tanium Module Server"]
+                subgraph P3_HV2["P3 MS1 Module Server HA Active (Private IP)"]
+                    MS_P3_1["p3pams01.cloud.phx3.gdg"]
+                    class MS_P3_1 yellow
+                end
+                subgraph P3_HV4["P3 MS2 Module Server HA Passive (Private IP)"]
+                    MS_P3_2["p3pams02.cloud.phx3.gdg"]
+                    class MS_P3_2 yellow
+                end
+                MS_P3_1 -->|"IPsec ESP"| MS_P3_2
+            end
+            subgraph ZS_P3["P3 Tanium Zone Server"]
+                %% Connects to Active Cluster
+                subgraph P3_HV5["P3 ZS1 Tanium Zone Server (Public IP)"]
+                    ZS_P3_1["p3plzs01.cloud.phx3.gdg<br/>Internal & External"]
+                end
+                subgraph P3_HV6["P3 ZS2 Tanium Zone Server (Public IP)"]
+                    ZS_P3_2["p3plzs02.cloud.phx3.gdg<br/>Internal & External"]
+                end
+            end
+        end
+        subgraph A2["IAD2 Ashburn, VA, USA"]
+            subgraph TS_A2["A2 Tanium Server"]
+                %% Active Cluster
+                subgraph A2_HV1["A2 TS1 Tanium Server HA Active (Private IP)"]
+                    TS_A2_1["a2pats01.cloud.iad2.gdg"]
+                    class TS_A2_1 white
+                end
+                subgraph A2_HV3["A2 TS2 Tanium Server HA Active (Private IP)"]
+                    TS_A2_2["a2pats02.cloud.iad2.gdg"]
+                    class TS_A2_2 white
+                end
+                TS_A2_1 <-->|"TCP/17472"| TS_A2_2
+            end
+            subgraph MS_A2["A2 Tanium Module Server"]
+                subgraph A2_HV2["A2 MS1 Module Server HA Active (Private IP)"]
+                    MS_A2_1["a2pams01.cloud.iad2.gdg"]
+                    class MS_A2_1 white
+                end
+                subgraph A2_HV4["A2 MS2 Module Server HA Passive (Private IP)"]
+                    MS_A2_2["a2pams02.cloud.iad2.gdg"]
+                    class MS_A2_2 white
+                end
+                MS_A2_1 -->|"IPsec ESP"| MS_A2_2
+            end
+            subgraph ZS_A2["A2 Tanium Zone Server"]
+                %% Connects to Active Cluster
+                subgraph A2_HV5["A2 ZS1 Tanium Zone Server (Public IP)"]
+                    ZS_A2_1["a2plzs01.cloud.iad2.gdg<br/>Internal & External"]
+                end
+                subgraph A2_HV6["P3 ZS2 Tanium Zone Server (Public IP)"]
+                    ZS_A2_2["a2plzs02.cloud.iad2.gdg<br/>Internal & External"]
+                end
+            end
+        end
+        subgraph SXB1["GD Core Prod Zone SXB1 Strasbourg, GER"]
+            subgraph ZS_SXB1["SXB1 Tanium Zone Server"]
+                %% Connects to Active Cluster
+                subgraph SXB1_HV1["SXB1 ZS1 Tanium Zone Server (Public IP)"]
+                    ZS_SXB1_1["sxb1plzs01.cloud.sxb1.gdg<br/>Internal & External"]
+                end
+                subgraph SXB1_HV2["SXB1 ZS2 Tanium Zone Server (Public IP)"]
+                    ZS_SXB1_2["sxb1plzs02.cloud.sxb1.gdg<br/>Internal & External"]
+                end
+            end
+        end
+        subgraph CGN["GD Core Prod Zone CGN Cologne, GER"]
+            subgraph ZS_CGN["CGN Tanium Zone Server"]
+                %% Connects to Active Cluster
+                subgraph CGN_HV1["CGN ZS1 Tanium Zone Server (Public IP)"]
+                    ZS_CGN_1["cgnplzs01.cloud.sxb1.gdg<br/>Internal & External"]
+                end
+                subgraph CGN_HV2["CGN ZS2 Tanium Zone Server (Public IP)"]
+                    ZS_CGN_2["cgnplzs02.cloud.sxb1.gdg<br/>Internal & External"]
+                end
+            end
+        end
+    end
+
+    %% Define nodes not part of a subgraph
+    %%Title("TanOS Tanium Production"):::StyleGoDaddyProd
+    %%TaniumClientInt["Tanium Client"]
+    TaniumClientExt["Tanium Client"]
+    TaniumConsole["Tanium Console<br/>https://tanium.int.gd3p.tools"]
+    %%RDPBastion["RDP Bastion Host<br/>cgnpwbastion01.gde.systems"]
+    %%RDPClient["RDP Client"]
+
+    %% Define relationships
+    TS_A2_1 -->|"TCP/22"| TS_A2_2 & MS_A2_1 & MS_A2_2
+    TS_P3_1 -->|"TCP/22"| TS_P3_2 & MS_P3_1 & MS_P3_2
+    TS_A2_1 & TS_A2_2 -->|"TCP/17487-17488"| ZS_A2  & ZS_P3 & ZS_SXB1 & ZS_CGN
+    TS_A2_1 & TS_A2_2 -->|"TCP/17477"| MS_A2_1
+    TS_P3_1 & TS_P3_2 -->|"TCP/17477"| MS_P3_1
+    MS_A2_1 -->|"TCP/443"| TS_A2_1 & TS_A2_2
+
+    TaniumClientExt .->|"TCP/17472<br/>Unused"| TS_A2
+    TaniumClientExt .->|"TCP/17475<br/>Unused"| MS_A2
+    TaniumClientExt .->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_A2 & ZS_P3 & ZS_SXB1 & ZS_CGN
+    TaniumConsole -->|"TCP/443"| TS_A2
+    %%RDPClient -->|"TCP/UDP/3389"| RDPBastion -->|"TCP/UDP/3389"| ZS_CGN
+
+    %% Add hyperlinks
+    click TaniumConsole "https://tanium.int.gd3p.tools" "Tanium Console (VPN Required)"
+
+    %% Define styles
+    classDef StyleGoDaddyProd fill:#E22726,color:#000000,stroke:#FFFFFF,stroke-width:1px;
+    classDef StyleGoDaddyProdEMEA fill:#FED317,color:#2F1C4C,stroke:#FADCD9,stroke-width:1px;
+    classDef StyleGoDaddyDev fill:#00782E,color:#D8EFEF,stroke:#FFEEA9,stroke-width:1px;
+    classDef yellow fill:#ff0,stroke:#333,stroke-width:1px;
+    classDef white fill:#fff,stroke:#333,stroke-width:1px;
+
+    %% Assign styles
+    %%class Title StyleGoDaddyProd;
