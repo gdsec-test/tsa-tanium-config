@@ -26,9 +26,8 @@ Tanium Console: https://wc-tanium.int.gdcorp.tools (VPN required)
 ## Development
 Tanium Console: https://tanium-dev.int.gdcorp.tools (VPN required)
 ![GoDaddy TanOS Tanium Architecture (Development)]
-```
 {% include docs/diagrams/src/tanos-tanium-architecture-dev.mmd %}
-```
+
 
 # Tanium Console
 The configurations described below are (or should be) live in their respective Tanium environments.
