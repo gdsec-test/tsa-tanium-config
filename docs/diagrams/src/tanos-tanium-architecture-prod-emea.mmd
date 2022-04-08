@@ -49,22 +49,18 @@ flowchart LR
                 %% Active Cluster
                 subgraph SXB1_HV1["SXB1 TS1 HA Active"]
                     TS_SXB1_1["sxb1patantswc01.cloud.sxb1.gdg<br>(Private IP)"]
-                    class TS_SXB1_1 white
                 end
                 subgraph SXB1_HV3["SXB1 TS2 HA Active"]
                     TS_SXB1_2["sxb1patantswc02.cloud.sxb1.gdg<br>(Private IP)"]
-                    class TS_SXB1_2 white
                 end
                 TS_SXB1_1 <-->|"TCP/17472"| TS_SXB1_2
             end
             subgraph MS_SXB1["SXB1 Tanium Module Server (WC)"]
                 subgraph SXB1_HV2["HV2: SXB1 MS1 HA Active"]
                     MS_SXB1_1["sxb1patanmswc01.cloud.sxb1.gdg<br>(Private IP)"]
-                    class MS_SXB1_1 white
                 end
                 subgraph SXB1_HV4["HV4: SXB1 MS2 HA Passive"]
                     MS_SXB1_2["sxb1patanmswc02.cloud.sxb1.gdg<br>(Private IP)"]
-                    class MS_SXB1_2 white
                 end
                 MS_SXB1_1 -->|"IPsec ESP"| MS_SXB1_2
             end
