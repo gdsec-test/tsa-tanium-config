@@ -4,31 +4,28 @@ Environment configuration and customizations for the Tanium platform. Excludes c
 # Tanium Architecture
 ## Production US
 Tanium Console: https://tanium.int.gdcorp.tools (VPN required)
-![GoDaddy Tanium Architecture (Production US)](/docs/diagrams/res/tanium-architecture-prod-us.png)
+![GoDaddy Tanium Architecture (Production US)](docs/diagrams/res/tanium-architecture-prod-us.png)
 
 ## Production EMEA (Works Council)
 Tanium Console: https://wc-tanium.int.gdcorp.tools (VPN required)
-![GoDaddy Tanium Architecture (Production EMEA WC)](/docs/diagrams/res/tanium-architecture-prod-emea.png)
+![GoDaddy Tanium Architecture (Production EMEA WC)](docs/diagrams/res/tanium-architecture-prod-emea.png)
 
 ## Development
 Tanium Console: https://tanium-dev.int.gdcorp.tools (VPN required)
-![GoDaddy Tanium Architecture (Development)](/docs/diagrams/res/tanium-architecture-dev.png)
+![GoDaddy Tanium Architecture (Development)](docs/diagrams/res/tanium-architecture-dev.png)
 
 # TanOS Tanium Architecture (Future)
 ## Production US
 Tanium Console: https://tanium.int.gdcorp.tools (VPN required)
-![GoDaddy TanOS Tanium Architecture (Production US)](/docs/diagrams/res/tanos-tanium-architecture-prod-us.png)
+![GoDaddy TanOS Tanium Architecture (Production US)](docs/diagrams/res/tanos-tanium-architecture-prod-us.svg)
 
 ## Production EMEA (Works Council)
 Tanium Console: https://wc-tanium.int.gdcorp.tools (VPN required)
-![GoDaddy TanOS Tanium Architecture (Production EMEA WC)](/docs/diagrams/res/tanos-tanium-architecture-prod-emea.png)
+![GoDaddy TanOS Tanium Architecture (Production EMEA WC)](docs/diagrams/res/tanos-tanium-architecture-prod-emea.svg)
 
 ## Development
 Tanium Console: https://tanium-dev.int.gdcorp.tools (VPN required)
-![GoDaddy TanOS Tanium Architecture (Development)](/docs/diagrams/res/tanos-tanium-architecture-dev.png)
-
-@@include[tanos-tanium-architecture-dev.mmd](/docs/diagrams/src/tanos-tanium-architecture-dev.mmd)
-
+![GoDaddy TanOS Tanium Architecture (Development)](docs/diagrams/res/tanos-tanium-architecture-dev.svg)
 
 # Tanium Console
 The configurations described below are (or should be) live in their respective Tanium environments.
