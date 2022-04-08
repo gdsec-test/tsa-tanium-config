@@ -40,11 +40,9 @@ flowchart LR
                 %% Connects to Active Cluster
                 subgraph P3_HV5["HV5: P3 ZS1"]
                     ZS_P3_1["p3dltanzs01.cloud.phx3.gdg<br/>Internal & External<br>(Public IP)"]
-                    class ZS_P3_1 white
                 end
                 subgraph P3_HV6["HV6: P3 ZS2"]
                     ZS_P3_2["p3dltanzs02.cloud.phx3.gdg<br/>Internal & External<br>(Public IP)"]
-                    class ZS_P3_2 white
                 end
             end
         end
@@ -53,22 +51,18 @@ flowchart LR
                 %% Active Cluster
                 subgraph A2_HV1["HV1: A2 TS1 HA Active"]
                     TS_A2_1["a2datants01.cloud.iad2.gdg<br>(Private IP)"]
-                    class TS_A2_1 white
                 end
                 subgraph A2_HV3["HV3: A2 TS2 HA Active"]
                     TS_A2_2["a2datants02.cloud.iad2.gdg<br>(Private IP)"]
-                    class TS_A2_2 white
                 end
                 TS_A2_1 <-->|"TCP/17472"| TS_A2_2
             end
             subgraph MS_A2["A2 Tanium Module Server"]
                 subgraph A2_HV2["HV2: A2 MS1 HA Active"]
                     MS_A2_1["a2datanms01.cloud.iad2.gdg<br>(Private IP)"]
-                    class MS_A2_1 white
                 end
                 subgraph A2_HV4["HV4: A2 MS2 HA Passive"]
                     MS_A2_2["a2datanms02.cloud.iad2.gdg<br>(Private IP)"]
-                    class MS_A2_2 white
                 end
                 MS_A2_1 -->|"IPsec ESP"| MS_A2_2
             end
@@ -76,11 +70,9 @@ flowchart LR
                 %% Connects to Active Cluster
                 subgraph A2_HV5["HV5: A2 ZS1"]
                     ZS_A2_1["a2dltanzs01.cloud.iad2.gdg<br/>Internal & External<br>(Public IP)"]
-                    class ZS_A2_1 white
                 end
                 subgraph A2_HV6["HV6: A2 ZS2"]
                     ZS_A2_2["a2dltanzs02.cloud.iad2.gdg<br/>Internal & External<br>(Public IP)"]
-                    class ZS_A2_2 white
                 end
             end
         end
