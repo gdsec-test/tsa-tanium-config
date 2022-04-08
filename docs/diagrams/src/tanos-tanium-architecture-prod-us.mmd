@@ -49,22 +49,18 @@ flowchart LR
                 %% Active Cluster
                 subgraph A2_HV1["HV1: A2 TS1 HA Active"]
                     TS_A2_1["a2patants01.cloud.iad2.gdg<br>(Private IP)"]
-                    class TS_A2_1 white
                 end
                 subgraph A2_HV3["HV3: A2 TS2 HA Active"]
                     TS_A2_2["a2patants02.cloud.iad2.gdg<br>(Private IP)"]
-                    class TS_A2_2 white
                 end
                 TS_A2_1 <-->|"TCP/17472"| TS_A2_2
             end
             subgraph MS_A2["A2 Tanium Module Server"]
                 subgraph A2_HV2["HV2: A2 MS1 HA Active"]
                     MS_A2_1["a2patanms01.cloud.iad2.gdg<br>(Private IP)"]
-                    class MS_A2_1 white
                 end
                 subgraph A2_HV4["HV4: A2 MS2 HA Passive"]
                     MS_A2_2["a2patanms02.cloud.iad2.gdg<br>(Private IP)"]
-                    class MS_A2_2 white
                 end
                 MS_A2_1 -->|"IPsec ESP"| MS_A2_2
             end
