@@ -86,14 +86,15 @@ flowchart LR
     %%RDPClient["RDP Client"]
 
     %% Define relationships
-    TS_SXB1_1 -->|"TCP/22"| TS_SXB1_2 & MS_SXB1_1 & MS_SXB1_2
-    TS_CGN_1 -->|"TCP/22"| TS_CGN_2 & MS_CGN_1 & MS_CGN_2
-    TS_SXB1_1 & TS_SXB1_2 -->|"TCP/17487-17488"| ZS_SXB1  & ZS_CGN
+    TS_SXB1_1 -->|"TCP/22<br>Array Management"| TS_SXB1_2 & MS_SXB1_1 & MS_SXB1_2
+    TS_CGN_1 -->|"TCP/22<br>Array Management"| TS_CGN_2 & MS_CGN_1 & MS_CGN_2
+    MS_SXB1_1 & MS_SXB1_2 -->|"TCP/17487-17488<br>Direct Connect"| ZS_SXB1  & ZS_CGN
+    TS_SXB1_1 & TS_SXB1_2 -->|"TCP/17472"| ZS_SXB1 & ZS_CGN
     TS_SXB1_1 & TS_SXB1_2 -->|"TCP/17477"| MS_SXB1_1
     TS_CGN_1 & TS_CGN_2 -->|"TCP/17477"| MS_CGN_1
     MS_SXB1_1 -->|"TCP/443"| TS_SXB1_1 & TS_SXB1_2
 
-    TaniumClientExt .->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_SXB1 & ZS_CGN
+    TaniumClientExt .->|"TCP/17472,17486<br/>Direct Connect Enabled"| ZS_SXB1 & ZS_CGN
     TaniumConsole -->|"TCP/443"| TS_SXB1
 
     %% Add hyperlinks
