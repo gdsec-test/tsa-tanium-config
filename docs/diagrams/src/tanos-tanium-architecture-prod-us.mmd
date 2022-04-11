@@ -109,14 +109,15 @@ flowchart LR
     %%RDPClient["RDP Client"]
 
     %% Define relationships
-    TS_A2_1 -->|"TCP/22"| TS_A2_2 & MS_A2_1 & MS_A2_2
-    TS_P3_1 -->|"TCP/22"| TS_P3_2 & MS_P3_1 & MS_P3_2
-    TS_A2_1 & TS_A2_2 -->|"TCP/17487-17488"| ZS_A2  & ZS_P3 & ZS_SXB1 & ZS_CGN
+    TS_A2_1 -->|"TCP/22<br>Array Management"| TS_A2_2 & MS_A2_1 & MS_A2_2
+    TS_P3_1 -->|"TCP/22<br>Array Management"| TS_P3_2 & MS_P3_1 & MS_P3_2
+    MS_A2_1 & MS_A2_2 -->|"TCP/17487-17488<br>Direct Connect"| ZS_A2  & ZS_P3 & ZS_SXB1 & ZS_CGN
+    TS_A2_1 & TS_A2_2 -->|"TCP/17472"| ZS_A2  & ZS_P3 & ZS_SXB1 & ZS_CGN
     TS_A2_1 & TS_A2_2 -->|"TCP/17477"| MS_A2_1
     TS_P3_1 & TS_P3_2 -->|"TCP/17477"| MS_P3_1
     MS_A2_1 -->|"TCP/443"| TS_A2_1 & TS_A2_2
 
-    TaniumClientExt .->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_A2 & ZS_P3 & ZS_SXB1 & ZS_CGN
+    TaniumClientExt .->|"TCP/17472,17486<br/>Direct Connect Enabled"| ZS_A2 & ZS_P3 & ZS_SXB1 & ZS_CGN
     TaniumConsole -->|"TCP/443"| TS_A2
     %%RDPClient -->|"TCP/UDP/3389"| RDPBastion -->|"TCP/UDP/3389"| ZS_CGN
 
