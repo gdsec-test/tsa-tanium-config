@@ -2,6 +2,8 @@ flowchart LR
     %% Define nodes and subgraphs
     subgraph TanOS_US_Prod["TanOS US Production"]
         subgraph Legend["Legend"]
+            EMPTY_NODE1["Server"] -->|"Server Connection"| EMPTY_NODE2["Server"]
+            EMPTY_NODE3["Client"] .->|"Client Connection"| EMPTY_NODE4["Server"]      
             TS["TS = Tanium Server"]
             MS["MS = Module Server"]
             ZS["ZS = Zone Server"]
