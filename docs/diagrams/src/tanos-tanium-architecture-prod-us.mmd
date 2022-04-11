@@ -114,8 +114,6 @@ flowchart LR
     TS_P3_1 & TS_P3_2 -->|"TCP/17477"| MS_P3_1
     MS_A2_1 -->|"TCP/443"| TS_A2_1 & TS_A2_2
 
-    TaniumClientExt .->|"TCP/17472<br/>Unused"| TS_A2
-    TaniumClientExt .->|"TCP/17475<br/>Unused"| MS_A2
     TaniumClientExt .->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_A2 & ZS_P3 & ZS_SXB1 & ZS_CGN
     TaniumConsole -->|"TCP/443"| TS_A2
     %%RDPClient -->|"TCP/UDP/3389"| RDPBastion -->|"TCP/UDP/3389"| ZS_CGN
