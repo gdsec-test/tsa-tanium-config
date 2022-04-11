@@ -91,8 +91,6 @@ flowchart LR
     TS_CGN_1 & TS_CGN_2 -->|"TCP/17477"| MS_CGN_1
     MS_SXB1_1 -->|"TCP/443"| TS_SXB1_1 & TS_SXB1_2
 
-    TaniumClientExt .->|"TCP/17472<br/>Unused"| TS_SXB1
-    TaniumClientExt .->|"TCP/17475<br/>Unused"| MS_SXB1
     TaniumClientExt .->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_SXB1 & ZS_CGN
     TaniumConsole -->|"TCP/443"| TS_SXB1
 
