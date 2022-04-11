@@ -1,0 +1,120 @@
+flowchart LR
+    %% Define nodes and subgraphs
+    subgraph TanOS_EMEA_Prod["TanOS EMEA Production (WC)"]
+        subgraph Legend["Legend"]
+            EMPTY_NODE1["Server"] -->|"Server Connection"| EMPTY_NODE2["Server"]
+            EMPTY_NODE3["Client"] .->|"Client Connection"| EMPTY_NODE4["Server"]
+            TS["TS = Tanium Server"]
+            MS["MS = Module Server"]
+            ZS["ZS = Zone Server"]
+            HV["HV = Hypervisor"]
+            active["Active"]
+            failover["Inactive Failover"]
+            class failover yellow
+        end
+        subgraph CGN["CGN Cologne, GER"]
+            subgraph TS_CGN["CGN Tanium Server (WC)"]
+                %% Failover Cluster
+                subgraph CGN_HV1["HV1: CGN TS1 HA Active"]
+                    TS_CGN_1["cgnpatantswc01.cloud.cgn.gdg<br>(Private IP)"]
+                    class TS_CGN_1 yellow
+                end
+                subgraph CGN_HV3["HV3: CGN TS2 HA Active"]
+                    TS_CGN_2["cgnpatantswc02.cloud.cgn.gdg<br>(Private IP)"]
+                    class TS_CGN_2 yellow
+                end
+                TS_CGN_1 <-->|"TCP/17472"| TS_CGN_2
+            end
+            subgraph MS_CGN["CGN Tanium Module Server (WC)"]
+                subgraph CGN_HV2["HV2: CGN MS1 HA Active"]
+                    MS_CGN_1["cgnpatanmswc01.cloud.cgn.gdg<br>(Private IP)"]
+                    class MS_CGN_1 yellow
+                end
+                subgraph CGN_HV4["HV4: CGN MS2 HA Passive"]
+                    MS_CGN_2["cgnpatanmswc02.cloud.cgn.gdg<br>(Private IP)"]
+                    class MS_CGN_2 yellow
+                end
+                MS_CGN_1 -->|"IPsec ESP"| MS_CGN_2
+            end
+            subgraph ZS_CGN["CGN Tanium Zone Server (WC)"]
+                %% Connects to Active Cluster
+                subgraph CGN_HV5["HV5: CGN ZS1"]
+                    ZS_CGN_1["cgnpltanzswc01.cloud.cgn.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+                subgraph CGN_HV6["HV6: CGN ZS2"]
+                    ZS_CGN_2["cgnpltanzswc02.cloud.cgn.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+            end
+        end
+        subgraph SXB1["SXB1 Strasbourg, GER"]
+            subgraph TS_SXB1["SXB1 Tanium Server (WC)"]
+                %% Active Cluster
+                subgraph SXB1_HV1["SXB1 TS1 HA Active"]
+                    TS_SXB1_1["sxb1patantswc01.cloud.sxb1.gdg<br>(Private IP)"]
+                end
+                subgraph SXB1_HV3["SXB1 TS2 HA Active"]
+                    TS_SXB1_2["sxb1patantswc02.cloud.sxb1.gdg<br>(Private IP)"]
+                end
+                TS_SXB1_1 <-->|"TCP/17472"| TS_SXB1_2
+            end
+            subgraph MS_SXB1["SXB1 Tanium Module Server (WC)"]
+                subgraph SXB1_HV2["HV2: SXB1 MS1 HA Active"]
+                    MS_SXB1_1["sxb1patanmswc01.cloud.sxb1.gdg<br>(Private IP)"]
+                end
+                subgraph SXB1_HV4["HV4: SXB1 MS2 HA Passive"]
+                    MS_SXB1_2["sxb1patanmswc02.cloud.sxb1.gdg<br>(Private IP)"]
+                end
+                MS_SXB1_1 -->|"IPsec ESP"| MS_SXB1_2
+            end
+            subgraph ZS_SXB1["SXB1 Tanium Zone Server (WC)"]
+                %% Connects to Active Cluster
+                subgraph SXB1_HV5["HV5: SXB1 ZS1"]
+                    ZS_SXB1_1["sxb1pltanzswc01.cloud.sxb1.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+                subgraph SXB1_HV6["HV6: SXB1 ZS2"]
+                    ZS_SXB1_2["sxb1pltanzswc02.cloud.sxb1.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+            end
+        end
+    end
+
+    %% Define nodes not part of a subgraph
+    %%Title("TanOS Tanium Production"):::StyleGoDaddyProd
+    %%TaniumClientInt["Tanium Client"]
+    TaniumClientExt["Tanium Client"]
+    TaniumConsole["WC Tanium Console<br/>https://wc-tanium.int.gd3p.tools"]
+    %%RDPClient["RDP Client"]
+
+    %% Define relationships
+    TS_SXB1_1 -->|"TCP/22"| TS_SXB1_2 & MS_SXB1_1 & MS_SXB1_2
+    TS_CGN_1 -->|"TCP/22"| TS_CGN_2 & MS_CGN_1 & MS_CGN_2
+    TS_SXB1_1 & TS_SXB1_2 -->|"TCP/17487-17488"| ZS_SXB1  & ZS_CGN
+    TS_SXB1_1 & TS_SXB1_2 -->|"TCP/17477"| MS_SXB1_1
+    TS_CGN_1 & TS_CGN_2 -->|"TCP/17477"| MS_CGN_1
+    MS_SXB1_1 -->|"TCP/443"| TS_SXB1_1 & TS_SXB1_2
+
+    TaniumClientExt .->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_SXB1 & ZS_CGN
+    TaniumConsole -->|"TCP/443"| TS_SXB1
+
+    %% Add hyperlinks
+    click TaniumConsole "https://wc-tanium.int.gd3p.tools" "WC Tanium Console (VPN Required)"
+
+    %% Define styles
+    classDef StyleGoDaddyProd fill:#E22726,color:#000000,stroke:#FFFFFF,stroke-width:1px;
+    classDef StyleGoDaddyProdEMEA fill:#FED317,color:#2F1C4C,stroke:#FADCD9,stroke-width:1px;
+    classDef StyleGoDaddyDev fill:#00782E,color:#D8EFEF,stroke:#FFEEA9,stroke-width:1px;
+    classDef yellow fill:#ff0,stroke:#333,stroke-width:1px;
+    classDef white fill:#fff,stroke:#333,stroke-width:1px;
+
+    class TanOS_EMEA_Prod white
+    class CGN white
+    class SXB1 white
+    class TS_CGN yellow
+    class MS_CGN yellow
+    class CGN_HV1 yellow
+    class CGN_HV2 yellow
+    class CGN_HV3 yellow
+    class CGN_HV4 yellow
+
+    %% Assign styles
+    %%class Title StyleGoDaddyProdEMEA;

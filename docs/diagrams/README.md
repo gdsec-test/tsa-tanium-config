@@ -10,6 +10,16 @@ Replace ```/mnt/c/Repos/gdcorp-infosec/tsa-tanium-config``` with the path to you
 
 The use of [mermaid-config.json](/docs/diagrams/src/mermaid-config.json) is required for SVG due to <a href="https://github.com/mermaid-js/mermaid/issues/1766">Issue #1766 · mermaid-js/mermaid (github.com)</a>.
 
+### Quick way to generate multiple diagrams:
+```
+# PNG
+for i in `ls src/tanos-tanium-architecture-*.mmd`; do docker run --rm -it -v $PWD:/data minlag/mermaid-cli -i /data/$i -o /data/res/${i:4:-4}.png -t default -b white -w 1920; done
+# SVG
+for i in `ls src/tanos-tanium-architecture-*.mmd`; do config="/data/src/mermaid-config.json"; docker run --rm -it -v $PWD:/data minlag/mermaid-cli -i /data/$i -o /data/res/${i:4:-4}.svg -t default -b white -w 1920 ${config}; done
+
+`ls src/tanos-tanium-architecture-*.mmd` can also be replaced with a spaced delimited list of mmd files
+```
+
 ### Production US
 ```
 # Tanium Production US

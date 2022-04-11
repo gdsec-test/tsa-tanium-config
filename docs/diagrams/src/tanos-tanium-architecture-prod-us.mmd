@@ -1,0 +1,146 @@
+flowchart LR
+    %% Define nodes and subgraphs
+    subgraph TanOS_US_Prod["TanOS US Production"]
+        subgraph Legend["Legend"]
+            EMPTY_NODE1["Server"] -->|"Server Connection"| EMPTY_NODE2["Server"]
+            EMPTY_NODE3["Client"] .->|"Client Connection"| EMPTY_NODE4["Server"]      
+            TS["TS = Tanium Server"]
+            MS["MS = Module Server"]
+            ZS["ZS = Zone Server"]
+            HV["HV = Hypervisor"]
+            active["Active"]
+            failover["Inactive Failover"]
+            class failover yellow
+        end
+        subgraph P3["GD Core Prod Zone PHX3 Phoenix, AZ, USA"]
+            subgraph TS_P3["P3 Tanium Server"]
+                %% Failover Cluster
+                subgraph P3_HV1["HV1: P3 TS1 HA Active"]
+                    TS_P3_1["p3patants01.cloud.phx3.gdg<br>(Private IP)"]
+                    class TS_P3_1 yellow
+                end
+                subgraph P3_HV3["HV3: P3 TS2 HA Active"]
+                    TS_P3_2["p3patants02.cloud.phx3.gdg<br>(Private IP)"]
+                    class TS_P3_2 yellow
+                end
+                TS_P3_1 <-->|"TCP/17472"| TS_P3_2
+            end
+            subgraph MS_P3["P3 Tanium Module Server"]
+                subgraph P3_HV2["HV2: P3 MS1 HA Active"]
+                    MS_P3_1["p3patanms01.cloud.phx3.gdg<br>(Private IP)"]
+                    class MS_P3_1 yellow
+                end
+                subgraph P3_HV4["HV4: P3 MS2 HA Passive"]
+                    MS_P3_2["p3patanms02.cloud.phx3.gdg<br>(Private IP)"]
+                    class MS_P3_2 yellow
+                end
+                MS_P3_1 -->|"IPsec ESP"| MS_P3_2
+            end
+            subgraph ZS_P3["P3 Tanium Zone Server"]
+                %% Connects to Active Cluster
+                subgraph P3_HV5["HV5: P3 ZS1"]
+                    ZS_P3_1["p3pltanzs01.cloud.phx3.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+                subgraph P3_HV6["HV6: P3 ZS2"]
+                    ZS_P3_2["p3pltanzs02.cloud.phx3.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+            end
+        end
+        subgraph A2["GD Core Prod Zone IAD2 Ashburn, VA, USA"]
+            subgraph TS_A2["A2 Tanium Server"]
+                %% Active Cluster
+                subgraph A2_HV1["HV1: A2 TS1 HA Active"]
+                    TS_A2_1["a2patants01.cloud.iad2.gdg<br>(Private IP)"]
+                end
+                subgraph A2_HV3["HV3: A2 TS2 HA Active"]
+                    TS_A2_2["a2patants02.cloud.iad2.gdg<br>(Private IP)"]
+                end
+                TS_A2_1 <-->|"TCP/17472"| TS_A2_2
+            end
+            subgraph MS_A2["A2 Tanium Module Server"]
+                subgraph A2_HV2["HV2: A2 MS1 HA Active"]
+                    MS_A2_1["a2patanms01.cloud.iad2.gdg<br>(Private IP)"]
+                end
+                subgraph A2_HV4["HV4: A2 MS2 HA Passive"]
+                    MS_A2_2["a2patanms02.cloud.iad2.gdg<br>(Private IP)"]
+                end
+                MS_A2_1 -->|"IPsec ESP"| MS_A2_2
+            end
+            subgraph ZS_A2["A2 Tanium Zone Server"]
+                %% Connects to Active Cluster
+                subgraph A2_HV5["HV5: A2 ZS1"]
+                    ZS_A2_1["a2pltanzs01.cloud.iad2.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+                subgraph A2_HV6["HV6: A2 ZS2"]
+                    ZS_A2_2["a2pltanzs02.cloud.iad2.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+            end
+        end
+        subgraph SXB1["GD Core Prod Zone SXB1 Strasbourg, GER"]
+            subgraph ZS_SXB1["SXB1 Tanium Zone Server"]
+                %% Connects to Active Cluster
+                subgraph SXB1_HV1["HV1: SXB1 ZS1"]
+                    ZS_SXB1_1["sxb1pltanzs01.cloud.sxb1.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+                subgraph SXB1_HV2["HV2: SXB1 ZS2"]
+                    ZS_SXB1_2["sxb1pltanzs02.cloud.sxb1.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+            end
+        end
+        subgraph CGN["GD Core Prod Zone CGN Cologne, GER"]
+            subgraph ZS_CGN["CGN Tanium Zone Server"]
+                %% Connects to Active Cluster
+                subgraph CGN_HV1["HV1: CGN ZS1"]
+                    ZS_CGN_1["cgnpltanzs01.cloud.sxb1.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+                subgraph CGN_HV2["HV2: CGN ZS2"]
+                    ZS_CGN_2["cgnpltanzs02.cloud.sxb1.gdg<br/>Internal & External<br>(Public IP)"]
+                end
+            end
+        end
+    end
+
+    %% Define nodes not part of a subgraph
+    %%Title("TanOS Tanium US Production"):::StyleGoDaddyProd
+    %%TaniumClientInt["Tanium Client"]
+    TaniumClientExt["Tanium Client"]
+    TaniumConsole["Tanium Console<br/>https://tanium.int.gd3p.tools"]
+    %%RDPBastion["RDP Bastion Host<br/>cgnpwbastion01.gde.systems"]
+    %%RDPClient["RDP Client"]
+
+    %% Define relationships
+    TS_A2_1 -->|"TCP/22"| TS_A2_2 & MS_A2_1 & MS_A2_2
+    TS_P3_1 -->|"TCP/22"| TS_P3_2 & MS_P3_1 & MS_P3_2
+    TS_A2_1 & TS_A2_2 -->|"TCP/17487-17488"| ZS_A2  & ZS_P3 & ZS_SXB1 & ZS_CGN
+    TS_A2_1 & TS_A2_2 -->|"TCP/17477"| MS_A2_1
+    TS_P3_1 & TS_P3_2 -->|"TCP/17477"| MS_P3_1
+    MS_A2_1 -->|"TCP/443"| TS_A2_1 & TS_A2_2
+
+    TaniumClientExt .->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_A2 & ZS_P3 & ZS_SXB1 & ZS_CGN
+    TaniumConsole -->|"TCP/443"| TS_A2
+    %%RDPClient -->|"TCP/UDP/3389"| RDPBastion -->|"TCP/UDP/3389"| ZS_CGN
+
+    %% Add hyperlinks
+    click TaniumConsole "https://tanium.int.gd3p.tools" "Tanium Console (VPN Required)"
+
+    %% Define styles
+    classDef StyleGoDaddyProd fill:#E22726,color:#000000,stroke:#FFFFFF,stroke-width:1px;
+    classDef StyleGoDaddyProdEMEA fill:#FED317,color:#2F1C4C,stroke:#FADCD9,stroke-width:1px;
+    classDef StyleGoDaddyDev fill:#00782E,color:#D8EFEF,stroke:#FFEEA9,stroke-width:1px;
+    classDef yellow fill:#ff0,stroke:#333,stroke-width:1px;
+    classDef white fill:#fff,stroke:#333,stroke-width:1px;
+
+    class TanOS_US_Prod white
+    class P3 white
+    class A2 white
+    class SXB1 white
+    class CGN white
+    class TS_P3 yellow
+    class MS_P3 yellow
+    class P3_HV1 yellow
+    class P3_HV2 yellow
+    class P3_HV3 yellow
+    class P3_HV4 yellow
+
+    %% Assign styles
+    %%class Title StyleGoDaddyProd;
