@@ -72,6 +72,6 @@ Do one of the following:
   * Type: `Server`
   * Value: `#000000` - Enter the hex value for the desired color.
 ### Values
-* Development: `#31F341`
+* Development: `#092C48`
 * Production EMEA: `#FFFF33`
 * Production US (Tanium default): `#EB3330`
