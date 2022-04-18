@@ -36,6 +36,7 @@ Customized console favicons to differentiate between Tanium environments.
 ### Configure
 Tanium Server on Windows only:
 * Copy the icon to *$env:PROGRAMFILES\Tanium\Tanium Server\http\tux-console\assets\images\favicon.ico*.
+* On Tanium 7.5 this was move to *$env:PROGRAMFILES\Tanium\Tanium Server\http\ufe-shell\favicon.ico*.
 * The change can take a few minutes to apply and requires a browser cache reload.
 ### Files
 * Development: [favicon-dev.ico](https://github.com/gdcorp-infosec/tsa-tanium-config/blob/579fbdf82c4ef32050656969c67397e25642d933/console/favicons/favicon-dev.ico)
@@ -72,6 +73,6 @@ Do one of the following:
   * Type: `Server`
   * Value: `#000000` - Enter the hex value for the desired color.
 ### Values
-* Development: `#092C48`
+* Development: `#1982D2`
 * Production EMEA: `#FFFF33`
 * Production US (Tanium default): `#EB3330`
