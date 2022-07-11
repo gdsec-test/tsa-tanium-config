@@ -67,7 +67,7 @@ flowchart LR
     TaniumClientExt .->|"TCP/17472,17500<br/>Direct Connect Enabled"| ZS_P3_1
     TaniumClientExt .->|"TCP/17472"| ZS_P3_2
     TaniumClientExt .->|"TCP/17472"| ZS_SG2
-    TaniumConsole -->|"TCP/443"| TS_A2
+    TaniumConsole -->|"TCP/443"| TS_A2_1
     %%RDPClient -->|"TCP/UDP/3389"| RDPBastion -->|"TCP/UDP/3389"| ZS_CGN_1
 
     %% Add hyperlinks
